@@ -11,6 +11,8 @@ Once Übersicht is installed, download the [zip file](volumeDisplay.widget.zip) 
 Below is what the volume bar looks like at full volume and when muted.
 
 ![Example Screenshot of widget](ScreenShot_FullVol.png)
+
+
 ![Example Screenshot of widget](ScreenShot_Mute.png)
 
 ## Options
@@ -40,6 +42,7 @@ Change the translucency of the bar. 1 makes the bar fully opaque and 0 makes it 
 
 ### barMaxWidth
 
+Set the length of the volume bar.
 
 ### vPosition & hPosition
 
