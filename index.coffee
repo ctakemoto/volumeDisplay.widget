@@ -9,7 +9,9 @@ options =
   barHeight: '10px'				#the height of the bar
   vPosition: 'center'			#verticle position of the bar, options: 'top', 'center', 'bottom'
   hPosition: 'center'			#horizontal position of the bar, options: 'left', 'center', 'right'
-
+  vOffset: '0px'				#offset the position of the widget vertically from default options, positive numbers shift the widget up
+  hOffset: '0px'				#offset the position of the widget horizontally from default options, positive numbers shift the widget left
+  orientation: 'horizontal'		#options: 'vertical' or 'horizontal'
 
 
 command: "osascript volumeDisplay.widget/volumeDisplay.scpt"
@@ -72,19 +74,27 @@ style: """
 
 
 	if #{options.vPosition} == center
-		top: 50%
+		top: calc(50% - #{options.vOffset})
 	else if #{options.vPosition} == top
-		top: 10%
+		top: calc(5% - #{options.vOffset})
 	else
-		top: 90%
+		bottom: calc(5% - #{options.vOffset})
 
 	if #{options.hPosition} == center
-		left: 50%
+		left: calc(50% -  #{options.hOffset})
+	else if #{options.hPosition} == left && #{options.orientation} == horizontal
+		left: calc(5% - (#{options.hOffset} - #{options.barMaxWidth}/2))
 	else if #{options.hPosition} == left
-		left: 25%
+		left: calc(5% - (#{options.hOffset} - #{options.barHeight}/2))
+	else if #{options.hPosition} == right && #{options.orientation} == horizontal
+		right: calc(5% - (#{options.hOffset} - #{options.barMaxWidth}/2))
 	else
-		left: 75%
+		right: calc(5% - (#{options.hOffset} - #{options.barHeight}/2))
 		
+
+	if #{options.orientation} == vertical
+		transform: rotate(-90deg)
+
 
 	#container
 		height: #{options.barHeight}
@@ -100,6 +110,7 @@ style: """
 		width: 90%
 		background: linear-gradient(to right, color1, color2, color3, color4)
 		opacity: #{options.barOpacity}
+
 		
 
 
