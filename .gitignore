@@ -1,2 +1,4 @@
 
 .DS_Store
+volumeDisplay.widget/index.coffee
+volumeDisplay.widget/volumeDisplay.scpt
